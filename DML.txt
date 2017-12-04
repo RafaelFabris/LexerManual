@@ -1,0 +1,47 @@
+DML
+
+dml 	::= cmd EOL dml 
+		  | cmd EOL
+cmd 	::= insert 
+		  | update 
+		  | delete 
+		  | select
+insert	::= INSERT INTO ID vfields VALUES OPEN cvalues CLOSE
+
+update  ::= UPDATE ID SET sfields where
+
+sfields ::= sfield
+		  | sfield COMMA sfields
+		  
+sfield  ::= ID EQ ID 
+		  | ID EQ STRING
+		  | ID EQ NUMBER
+		  
+where	::= WHERE sfield
+
+vfields ::= OPEN fields CLOSE
+
+fields  ::= ID
+		  | ID COMMA fields
+cvalues  ::= ID
+		  | STRING
+		  | NUMBER
+		  | ID COMMA cvalues
+		  | NUMBER COMMA cvalues
+		  | STRING COMMA cvalues
+		  
+TOKENS :
+EOL
+INSERT
+INTO
+ID 
+VALUES
+OPEN
+CLOSE
+UPDATE
+SET 
+COMMA 	  
+EQ  
+STRING	
+NUMBER  
+WHERE
